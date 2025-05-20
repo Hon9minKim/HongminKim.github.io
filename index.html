@@ -13,121 +13,63 @@
 
       body {
         font-family: "Arial", sans-serif;
-        background-color: #f5f5f5;
-        color: #333;
         min-height: 100vh;
-        display: flex;
-        flex-direction: column;
+        position: relative;
+      }
+
+      .background-image {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("poster.png");
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color: #f5f5f5;
+        z-index: -1;
       }
 
       .container {
-        max-width: 100%;
-        padding: 12px;
-        flex: 1;
+        min-height: 100vh;
         display: flex;
         flex-direction: column;
-      }
-
-      .header {
-        text-align: left;
-        padding: 12px 0;
-      }
-
-      .header h1 {
-        font-size: 32px;
-        margin-bottom: 8px;
-        color: #333;
-        font-weight: 900;
-        line-height: 1.2;
-      }
-
-      .header h1:last-child {
-        color: #000000; /* 검정색 */
-      }
-
-      .hashtag {
-        color: #000080; /* 진한 남색 */
-      }
-
-      .message {
-        text-align: center;
-        padding: 12px;
-        line-height: 1.8;
-        font-size: 14px;
-        color: #00bfff; /* 하늘색 */
-        margin: 5px 0;
-        font-weight: 600;
-      }
-
-      .images-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0;
-        margin: 0;
-      }
-
-      .image-wrapper {
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0;
-      }
-
-      .image-wrapper img {
-        width: 140px;
-        height: 140px;
-        object-fit: contain;
-        border-radius: 8px;
-        margin: 0;
+        justify-content: flex-end;
+        padding: 20px;
       }
 
       .button-container {
-        margin-top: auto;
-        padding: 12px;
+        position: fixed;
+        bottom: 20vh;
+        left: 0;
+        right: 0;
+        padding: 0 20px;
       }
 
       .button {
         display: block;
         width: 100%;
-        padding: 12px;
-        background-color: #007bff;
-        color: white;
+        padding: 16px;
+        background: none;
+        color: #000080;
         text-align: center;
         text-decoration: none;
-        border-radius: 8px;
+        border-radius: 50px;
         font-weight: bold;
-        transition: background-color 0.3s;
-        font-size: 14px;
+        transition: all 0.3s;
+        font-size: 16px;
+        border: 3px solid #000080;
       }
 
       .button:hover {
-        background-color: #0056b3;
+        background-color: rgba(0, 0, 128, 0.1);
       }
     </style>
   </head>
   <body>
+    <div class="background-image"></div>
     <div class="container">
-      <div class="header">
-        <h1>남겨진 외화</h1>
-        <h1>기후난민을 위하여,</h1>
-        <h1>#트래블 월렛</h1>
-      </div>
-      <div class="message">
-        내 남은 외화가<br />
-        누군가의 삶을 지키는 티켓이 됩니다.<br /><br />
-        비행기로 만든 흔적,<br />
-        기부로 지워주세요.
-      </div>
-      <div class="images-container">
-        <div class="image-wrapper">
-          <img src="green.png" alt="Green Image" />
-        </div>
-        <div class="image-wrapper">
-          <img src="travel_wallet.png" alt="Travel Wallet Image" />
-        </div>
-      </div>
       <div class="button-container">
         <a href="#" class="button" onclick="redirectToStore(event)"
           >지금 기부하러 가기</a
