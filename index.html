@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Change for Change</title>
+    <title>남겨진 외화</title>
     <style>
       * {
         margin: 0;
@@ -29,23 +29,24 @@
       }
 
       .header {
-        text-align: center;
+        text-align: left;
         padding: 12px 0;
       }
 
       .header h1 {
-        font-size: 36px;
-        margin-bottom: 10px;
+        font-size: 32px;
+        margin-bottom: 8px;
         color: #333;
         font-weight: 900;
+        line-height: 1.2;
       }
 
-      .first-c {
-        color: #00bfff; /* 하늘색 */
+      .header h1:last-child {
+        color: #0000a0; /* 중간 네이비색 */
       }
 
-      .second-c {
-        color: #32cd32; /* 초록색 */
+      .hashtag {
+        color: #000080; /* 진한 남색 */
       }
 
       .message {
@@ -53,7 +54,7 @@
         padding: 12px;
         line-height: 1.8;
         font-size: 14px;
-        color: #444;
+        color: #00bfff; /* 하늘색 */
         margin: 5px 0;
         font-weight: 600;
       }
@@ -107,18 +108,15 @@
   <body>
     <div class="container">
       <div class="header">
-        <h1>
-          <span class="first-c">C</span>hange for
-          <span class="second-c">C</span>hange
-        </h1>
+        <h1>남겨진 외화</h1>
+        <h1>기후난민을 위하여,</h1>
+        <h1>#트래블 월렛</h1>
       </div>
       <div class="message">
-        우리가 다녀온 비행이 남긴 탄소는,<br />
-        누군가의 생존을 위협합니다.<br />
-        남아있는 외화가 아이들에게<br />
-        시원한 그늘과 한모금의 물이 될 수 있습니다.<br />
-        작지만 실천 가능한 기부.<br />
-        지금 함께해주세요.
+        내 남은 외화가<br />
+        누군가의 삶을 지키는 티켓이 됩니다.<br /><br />
+        비행기로 만든 흔적,<br />
+        기부로 지워주세요.
       </div>
       <div class="images-container">
         <div class="image-wrapper">
@@ -129,7 +127,9 @@
         </div>
       </div>
       <div class="button-container">
-        <a href="#" class="button" onclick="redirectToStore(event)">기부하기</a>
+        <a href="#" class="button" onclick="redirectToStore(event)"
+          >지금 기부하러 가기</a
+        >
       </div>
     </div>
 
