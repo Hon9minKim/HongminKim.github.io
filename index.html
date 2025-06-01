@@ -3,105 +3,372 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>남겨진 외화</title>
+    <title>구름과 비행기</title>
     <style>
+      @font-face {
+        font-family: "Gomsin";
+        src: url("gomsin.ttf") format("truetype");
+      }
+
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        font-family: "Gomsin", sans-serif;
       }
 
       body {
-        font-family: "Arial", sans-serif;
-        min-height: 100vh;
-        position: relative;
+        height: 300vh;
+        background: linear-gradient(
+          to bottom,
+          #87ceeb 0%,
+          #87ceeb 15%,
+          #a8c4d9 15%,
+          #a8c4d9 20%,
+          #c19a6b 20%,
+          #c19a6b 80%,
+          #c19a6b 85%,
+          #8a9a5b 95%,
+          #129044 97%,
+          #407d48 99%
+        );
+        overflow-x: hidden;
       }
 
-      .background-image {
+      .scene {
         position: fixed;
+        width: 100%;
+        height: 100vh;
         top: 0;
         left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url("poster.png");
+        background: linear-gradient(to bottom, #87ceeb, #e0f7ff);
+        transition: background 0.8s ease; /* 전환 시간 증가 */
+      }
+
+      .cloud {
+        position: absolute;
         background-size: contain;
-        background-position: center;
         background-repeat: no-repeat;
-        background-color: #f5f5f5;
-        z-index: -1;
+        background-position: center center;
+        opacity: 0.8;
       }
 
-      .container {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
+      .cloud1 {
+        width: 600px;
+        height: 300px;
+        top: 10%;
+        left: 30%;
+        transform: translateX(-50%) translateX(0);
+        background-image: url("cloud2.png");
+      }
+
+      .cloud2 {
+        width: 300px;
+        height: 150px;
+        top: 25%;
+        left: 70%;
+        transform: translateX(-50%) translateX(0);
+        background-image: url("cloud1.png");
+      }
+
+      .cloud3 {
+        width: 525px;
+        height: 262px;
+        top: 45%;
+        left: 10%;
+        transform: translateX(-50%) translateX(0);
+        background-image: url("cloud2.png");
+      }
+
+      .cloud4 {
+        width: 525px;
+        height: 225px;
+        top: 60%;
+        left: 80%;
+        transform: translateX(-50%) translateX(0);
+        background-image: url("cloud1.png");
+      }
+
+      .cloud5 {
+        width: 450px;
+        height: 225px;
+        top: 75%;
+        left: 40%;
+        transform: translateX(-50%) translateX(0);
+        background-image: url("cloud2.png");
+      }
+
+      .airplane {
+        position: absolute;
+        width: 800px;
+        height: 800px;
+        top: 15%;
+        right: 20%; /* -200px에서 0px로 변경하여 오른쪽으로 이동 */
+        background: url("plane.png") no-repeat center center;
+        background-size: contain;
+        z-index: 1;
+      }
+
+      .content {
+        position: relative;
         padding: 20px;
-      }
-
-      .button-container {
-        position: fixed;
-        bottom: 15vh;
-        left: 0;
-        right: 0;
-        padding: 0 20px;
-      }
-
-      .button {
-        display: block;
-        width: 100%;
-        padding: 16px;
-        background: none;
-        color: #000080;
+        margin-top: 40vh; /* 80vh에서 40vh로 변경하여 제목을 위로 올림 */
+        color: #333;
         text-align: center;
-        text-decoration: none;
-        border-radius: 50px;
-        font-weight: bold;
-        transition: all 0.3s;
-        font-size: 16px;
-        border: 3px solid #000080;
       }
 
-      .button:hover {
-        background-color: rgba(0, 0, 128, 0.1);
+      h1 {
+        font-size: 3.5em;
+        margin-bottom: 30px;
+        line-height: 1.4;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* 제목 가독성을 위한 그림자 추가 */
+      }
+
+      .hashtags {
+        color: white;
+        font-size: 2.8em;
+        margin: 25px 0;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .subtitle {
+        font-size: 4.2em;
+        margin: 30px 0;
+        font-weight: bold;
+        color: #1a4f7e; /* 진한 남색으로 변경 */
+      }
+
+      .content-box {
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 20px;
+        padding: 40px;
+        margin: 200px auto; /* 상단 여백 증가 */
+        max-width: 800px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .content-box p {
+        font-size: 1.4em;
+        line-height: 1.6;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      p {
+        font-size: 1.2em;
+        line-height: 1.6;
       }
     </style>
   </head>
   <body>
-    <div class="background-image"></div>
-    <div class="container">
-      <div class="button-container">
-        <a href="#" class="button" onclick="redirectToStore(event)"
-          >지금 기부하러 가기</a
-        >
+    <div class="scene">
+      <div class="cloud cloud1"></div>
+      <div class="cloud cloud2"></div>
+      <div class="cloud cloud3"></div>
+      <div class="cloud cloud4"></div>
+      <div class="cloud cloud5"></div>
+      <div class="airplane"></div>
+    </div>
+
+    <div class="content">
+      <h1>남겨진 외화,<br />기후 난민을 위하여</h1>
+      <div class="hashtags">
+        #초록우산<br />
+        #트래블 월렛 기부천사
+      </div>
+      <div class="subtitle">Change for Change</div>
+      <div class="content-box">
+        <p>
+          매일 수많은 비행기가 하늘을 날아다니며 우리의 삶을 편리하게 만들어주고
+          있습니다. 하지만 이 편리함의 이면에는 심각한 환경 문제가 도사리고
+          있습니다. 비행기는 항공유를 연소시킬 때 이산화탄소, 질소산화물 등
+          다양한 온실가스를 배출합니다. 특히 고공에서 배출되는 이 가스들은 지구
+          온난화에 더 큰 영향을 미친다고 합니다.
+        </p>
+        <p>
+          2019년 기준, 항공 산업은 전 세계 이산화탄소 배출량의 약 2.5%를
+          차지하고 있으며, 이는 지속적으로 증가하는 추세입니다. 우리가 비행기를
+          이용할 때마다 발생하는 탄소 발자국을 줄이기 위한 노력이 필요합니다.
+          단거리 이동은 가능한 대중교통을 이용하고, 장거리 여행 시에는 탄소 상쇄
+          프로그램을 활용하는 등 작은 실천이 모여 큰 변화를 만들 수 있습니다.
+        </p>
+        <p>지구를 위한 우리의 선택이 지금 당장 필요합니다.</p>
+        <p>
+          매일 수많은 비행기가 하늘을 날아다니며 우리의 삶을 편리하게 만들어주고
+          있습니다. 하지만 이 편리함의 이면에는 심각한 환경 문제가 도사리고
+          있습니다. 비행기는 항공유를 연소시킬 때 이산화탄소, 질소산화물 등
+          다양한 온실가스를 배출합니다. 특히 고공에서 배출되는 이 가스들은 지구
+          온난화에 더 큰 영향을 미친다고 합니다.
+        </p>
+        <p>
+          2019년 기준, 항공 산업은 전 세계 이산화탄소 배출량의 약 2.5%를
+          차지하고 있으며, 이는 지속적으로 증가하는 추세입니다. 우리가 비행기를
+          이용할 때마다 발생하는 탄소 발자국을 줄이기 위한 노력이 필요합니다.
+          단거리 이동은 가능한 대중교통을 이용하고, 장거리 여행 시에는 탄소 상쇄
+          프로그램을 활용하는 등 작은 실천이 모여 큰 변화를 만들 수 있습니다.
+        </p>
+        <p>지구를 위한 우리의 선택이 지금 당장 필요합니다.</p>
+        <p>
+          매일 수많은 비행기가 하늘을 날아다니며 우리의 삶을 편리하게 만들어주고
+          있습니다. 하지만 이 편리함의 이면에는 심각한 환경 문제가 도사리고
+          있습니다. 비행기는 항공유를 연소시킬 때 이산화탄소, 질소산화물 등
+          다양한 온실가스를 배출합니다. 특히 고공에서 배출되는 이 가스들은 지구
+          온난화에 더 큰 영향을 미친다고 합니다.
+        </p>
+        <p>
+          2019년 기준, 항공 산업은 전 세계 이산화탄소 배출량의 약 2.5%를
+          차지하고 있으며, 이는 지속적으로 증가하는 추세입니다. 우리가 비행기를
+          이용할 때마다 발생하는 탄소 발자국을 줄이기 위한 노력이 필요합니다.
+          단거리 이동은 가능한 대중교통을 이용하고, 장거리 여행 시에는 탄소 상쇄
+          프로그램을 활용하는 등 작은 실천이 모여 큰 변화를 만들 수 있습니다.
+        </p>
+        <p>지구를 위한 우리의 선택이 지금 당장 필요합니다.</p>
+        <p>
+          매일 수많은 비행기가 하늘을 날아다니며 우리의 삶을 편리하게 만들어주고
+          있습니다. 하지만 이 편리함의 이면에는 심각한 환경 문제가 도사리고
+          있습니다. 비행기는 항공유를 연소시킬 때 이산화탄소, 질소산화물 등
+          다양한 온실가스를 배출합니다. 특히 고공에서 배출되는 이 가스들은 지구
+          온난화에 더 큰 영향을 미친다고 합니다.
+        </p>
+        <p>
+          2019년 기준, 항공 산업은 전 세계 이산화탄소 배출량의 약 2.5%를
+          차지하고 있으며, 이는 지속적으로 증가하는 추세입니다. 우리가 비행기를
+          이용할 때마다 발생하는 탄소 발자국을 줄이기 위한 노력이 필요합니다.
+          단거리 이동은 가능한 대중교통을 이용하고, 장거리 여행 시에는 탄소 상쇄
+          프로그램을 활용하는 등 작은 실천이 모여 큰 변화를 만들 수 있습니다.
+        </p>
+        <p>지구를 위한 우리의 선택이 지금 당장 필요합니다.</p>
+        <p>
+          매일 수많은 비행기가 하늘을 날아다니며 우리의 삶을 편리하게 만들어주고
+          있습니다. 하지만 이 편리함의 이면에는 심각한 환경 문제가 도사리고
+          있습니다. 비행기는 항공유를 연소시킬 때 이산화탄소, 질소산화물 등
+          다양한 온실가스를 배출합니다. 특히 고공에서 배출되는 이 가스들은 지구
+          온난화에 더 큰 영향을 미친다고 합니다.
+        </p>
+        <p>
+          2019년 기준, 항공 산업은 전 세계 이산화탄소 배출량의 약 2.5%를
+          차지하고 있으며, 이는 지속적으로 증가하는 추세입니다. 우리가 비행기를
+          이용할 때마다 발생하는 탄소 발자국을 줄이기 위한 노력이 필요합니다.
+          단거리 이동은 가능한 대중교통을 이용하고, 장거리 여행 시에는 탄소 상쇄
+          프로그램을 활용하는 등 작은 실천이 모여 큰 변화를 만들 수 있습니다.
+        </p>
+        <p>지구를 위한 우리의 선택이 지금 당장 필요합니다.</p>
       </div>
     </div>
 
     <script>
-      function redirectToStore(event) {
-        event.preventDefault();
+      window.addEventListener("scroll", () => {
+        const scrolled = window.pageYOffset;
+        const clouds = document.querySelectorAll(".cloud");
+        const airplane = document.querySelector(".airplane");
+        const scene = document.querySelector(".scene");
 
-        const appleStoreUrl =
-          "https://apps.apple.com/kr/app/%ED%8A%B8%EB%9E%98%EB%B8%94%EC%9B%94%EB%A0%9B-travel-pay/id1460769945";
-        const googleStoreUrl =
-          "https://play.google.com/store/apps/details?id=com.mobiletoong.travelwallet&hl=ko";
+        // 배경색 변경 - 스크롤 진행도 계산 수정
+        const totalHeight = document.body.scrollHeight - window.innerHeight;
+        const progress = Math.min(scrolled / totalHeight, 1);
 
-        // iOS 기기 감지
-        const isIOS =
-          /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        // 5단계 그라데이션을 위한 색상
+        const colors = {
+          sky: "#87ceeb", // 하늘색
+          skySand: "#a8c4d9", // 하늘-황토 중간색
+          sand: "#c19a6b", // 황토색
+          sandGreen: "#8a9a5b", // 황토-초록 중간색 (올리브 그린)
+          green: "#407d48", // 짙은 녹색
+        };
 
-        // 안드로이드 기기 감지
-        const isAndroid = /Android/.test(navigator.userAgent);
-
-        // 기기에 따라 적절한 스토어로 리다이렉트
-        if (isIOS) {
-          window.location.href = appleStoreUrl;
-        } else if (isAndroid) {
-          window.location.href = googleStoreUrl;
-        } else {
-          // 데스크톱이나 다른 기기의 경우 구글 플레이 스토어로 이동
-          window.location.href = googleStoreUrl;
+        // RGB 값으로 변환
+        const rgbColors = {};
+        for (const [key, value] of Object.entries(colors)) {
+          rgbColors[key] = hexToRgb(value);
         }
+
+        // 현재 스크롤 위치에 따른 RGB 값 계산
+        let currentRGB;
+        if (progress < 0.15) {
+          // 하늘색 유지
+          currentRGB = rgbColors.sky;
+        } else if (progress < 0.2) {
+          // 하늘색에서 하늘-황토 중간색으로
+          const subProgress = (progress - 0.15) / 0.05;
+          currentRGB = interpolateColor(
+            rgbColors.sky,
+            rgbColors.skySand,
+            subProgress
+          );
+        } else if (progress < 0.8) {
+          // 하늘-황토 중간색에서 황토색으로
+          const subProgress = (progress - 0.2) / 0.6;
+          currentRGB = interpolateColor(
+            rgbColors.skySand,
+            rgbColors.sand,
+            subProgress
+          );
+        } else if (progress < 0.95) {
+          // 황토색에서 황토-초록 중간색으로
+          const subProgress = (progress - 0.8) / 0.15;
+          currentRGB = interpolateColor(
+            rgbColors.sand,
+            rgbColors.sandGreen,
+            subProgress
+          );
+        } else {
+          // 황토-초록 중간색에서 빨간색으로
+          const subProgress = (progress - 0.95) / 0.05;
+          currentRGB = interpolateColor(
+            rgbColors.sandGreen,
+            rgbColors.green,
+            subProgress
+          );
+        }
+
+        // 새로운 배경색 적용
+        scene.style.background = `linear-gradient(to bottom, 
+          rgb(${currentRGB.r}, ${currentRGB.g}, ${currentRGB.b}), 
+          rgb(${currentRGB.r + 20}, ${currentRGB.g + 20}, ${currentRGB.b + 20})
+        )`;
+
+        // 구름들의 움직임 - 속도 조정
+        clouds.forEach((cloud, index) => {
+          const speed = 0.4 + index * 0.15;
+          if (index % 2 === 0) {
+            // 짝수 인덱스는 왼쪽으로
+            cloud.style.transform = `translateX(-50%) translateX(${
+              -scrolled * speed
+            }px)`;
+          } else {
+            // 홀수 인덱스는 오른쪽으로
+            cloud.style.transform = `translateX(-50%) translateX(${
+              scrolled * speed
+            }px)`;
+          }
+          cloud.style.opacity = 1 - progress;
+        });
+
+        // 비행기의 움직임 - 속도 증가
+        airplane.style.transform = `translate(${scrolled * 2.0}px, -${
+          scrolled * 0.3
+        }px)`;
+      });
+
+      // HEX 색상을 RGB로 변환하는 함수
+      function hexToRgb(hex) {
+        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return result
+          ? {
+              r: parseInt(result[1], 16),
+              g: parseInt(result[2], 16),
+              b: parseInt(result[3], 16),
+            }
+          : null;
+      }
+
+      // 색상 보간 함수 추가
+      function interpolateColor(color1, color2, factor) {
+        return {
+          r: Math.round(color1.r + (color2.r - color1.r) * factor),
+          g: Math.round(color1.g + (color2.g - color1.g) * factor),
+          b: Math.round(color1.b + (color2.b - color1.b) * factor),
+        };
       }
     </script>
   </body>
